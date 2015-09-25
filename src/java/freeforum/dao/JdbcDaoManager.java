@@ -27,7 +27,7 @@ public class JdbcDaoManager implements IDaoManager
             Class.forName("com.mysql.jdbc.Driver");
             String url;
             url = "jdbc:mysql://localhost:3306/forum";
-            conexao = DriverManager.getConnection(url, "root", "");
+            conexao = DriverManager.getConnection(url, "root", "root");
             conexao.setAutoCommit(false);
             assuntoDao.setConexao(conexao);
             topicoDao.setConexao(conexao);

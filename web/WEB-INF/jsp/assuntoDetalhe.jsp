@@ -20,11 +20,12 @@
                 <li>${topicos.titulo} - ${topicos.nome}</li>
             </c:forEach> 
         </ul>
-        
         <h2>Cadastrar novo tópico:</h2>
         <form method="POST" action="assunto?id=<c:out value="${assunto.id}"/>">     
             <label for="nome">Seu nome é:</label><input type="text" name="nome"/>
             <label for="titulo">Titulo do tópico:</label><input type="text" name="titulo"/>
+            <!-- Adicionar pergunta em topico-->
+            <label for="Pergunta">Pergunta:</label><input type="text" name="pergunta"/>
             <input type="submit" value="enviar"/>
         </form>
     </body>
