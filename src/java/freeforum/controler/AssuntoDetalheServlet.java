@@ -5,11 +5,22 @@
  */
 package freeforum.controler;
 
+import freeforum.dao.ITopicoDAO;
 import freeforum.model.Assunto;
 import freeforum.model.AssuntoMng;
 import freeforum.model.IAssuntoMng;
+import freeforum.model.ITopicoMng;
+import freeforum.model.Topico;
+import freeforum.model.TopicoMng;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,15 +36,17 @@ public class AssuntoDetalheServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Topico> topicos = new ArrayList<Topico>();
         int id;
-        Assunto assunto;
         String idParam;
         idParam = request.getParameter("id");
         id = Integer.parseInt(idParam);
-        IAssuntoMng maneger = new AssuntoMng();
-        assunto = maneger.obterPorId(id);
         
-        request.setAttribute("assunto", assunto);
+        ITopicoMng maneger = new TopicoMng();
+        topicos = maneger.selecionarPorAssunto(obterAssunto(request, id));
+        
+        request.setAttribute("topicos", topicos);
+        request.setAttribute("assunto", obterAssunto(request, id));
         
         RequestDispatcher rd;
         rd = request.getRequestDispatcher("/WEB-INF/jsp/assuntoDetalhe.jsp");
@@ -45,7 +58,29 @@ public class AssuntoDetalheServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-
+        int id;
+        Date data = new Date(System.currentTimeMillis());
+        String idParam;
+        idParam = request.getParameter("id");
+        id = Integer.parseInt(idParam);
+        
+        ITopicoMng maneger = new TopicoMng();
+        Assunto assunto = obterAssunto(request, id);
+        Topico topico = new Topico(assunto);
+        topico.setData(data);
+        topico.setMensagens(null);
+        topico.setTitulo(request.getParameter("titulo"));
+        topico.setNome(request.getParameter("nome"));
+        maneger.novoTopico(topico);
+        
+        
+    }
+    
+    protected Assunto obterAssunto(HttpServletRequest request, int id){
+        Assunto assunto;
+        IAssuntoMng maneger = new AssuntoMng();
+        assunto = maneger.obterPorId(id);
+        return assunto;
     }
 
 }

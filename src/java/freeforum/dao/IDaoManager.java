@@ -7,4 +7,5 @@ public interface IDaoManager
     void confirmarTransacao();
     void abortarTransacao();
     IAssuntoDAO getAssuntoDao();
+    ITopicoDAO getTopicoDao();
 }

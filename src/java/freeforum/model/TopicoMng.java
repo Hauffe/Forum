@@ -5,8 +5,8 @@
  */
 package freeforum.model;
 
-import freeforum.dao.IAssuntoDAO;
 import freeforum.dao.IDaoManager;
+import freeforum.dao.ITopicoDAO;
 import freeforum.dao.JdbcDaoManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,43 +15,41 @@ import java.util.List;
  *
  * @author Alexandre
  */
-public class AssuntoMng implements IAssuntoMng{
+public class TopicoMng implements ITopicoMng{
 
     IDaoManager maneger = new JdbcDaoManager();
+    ITopicoDAO dao = maneger.getTopicoDao();
     
     @Override
-    public List<Assunto> obterTodos() {
-        List<Assunto> assuntos = new ArrayList<Assunto>();
-        
+    public Topico novoTopico(Topico topico) {
         try {
             maneger.iniciar();
-            IAssuntoDAO dao = maneger.getAssuntoDao();
-            assuntos = dao.selecionarTodos();
+            Topico t;
+            t = dao.inserir(topico);
             maneger.confirmarTransacao();
             maneger.encerrar();
-            return assuntos;
+            return t;
         } catch (Exception e) {
             maneger.abortarTransacao();
             throw e;
         }
+        
     }
 
     @Override
-    public Assunto obterPorId(int id) {
-        Assunto assunto;
+    public List<Topico> selecionarPorAssunto(Assunto assunto) {
+        List<Topico> topicos = new ArrayList<Topico>();
         
         try {
             maneger.iniciar();
-            IAssuntoDAO dao = maneger.getAssuntoDao();
-            assunto = dao.selecionarPorId(id);
+            topicos = dao.selecionarPorAssunto(assunto);
             maneger.confirmarTransacao();
             maneger.encerrar();
-            return assunto;
+            return topicos;
         } catch (Exception e) {
             maneger.abortarTransacao();
             throw e;
         }
     }
-    
     
 }

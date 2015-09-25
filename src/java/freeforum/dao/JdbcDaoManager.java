@@ -10,10 +10,12 @@ public class JdbcDaoManager implements IDaoManager
 {
     Connection conexao;
     jdbcAssuntoDAO assuntoDao;
+    jdbcTopicoDAO topicoDao;
     
     public JdbcDaoManager()
     {
         assuntoDao = new jdbcAssuntoDAO(conexao);
+        topicoDao = new jdbcTopicoDAO(conexao);
     }
     
     
@@ -28,6 +30,7 @@ public class JdbcDaoManager implements IDaoManager
             conexao = DriverManager.getConnection(url, "root", "");
             conexao.setAutoCommit(false);
             assuntoDao.setConexao(conexao);
+            topicoDao.setConexao(conexao);
         }
         catch( Exception ex )
         {
@@ -66,6 +69,11 @@ public class JdbcDaoManager implements IDaoManager
     public IAssuntoDAO getAssuntoDao() 
     {
         return assuntoDao;
+    }
+
+    @Override
+    public ITopicoDAO getTopicoDao() {
+       return topicoDao;
     }
 
 
