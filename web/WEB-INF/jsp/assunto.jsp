@@ -17,7 +17,10 @@
     <body>
         <h1>Assuntos!</h1>
             <c:forEach var="assunto" items="${Assuntos}">
-                <p>${assunto.nome}</p>
+                <a href="assunto?id=${assunto.id}">
+                    <word>${assunto.nome}</word>
+                </a>
+                <br />
             </c:forEach>
     </body>
 </html>

@@ -1,5 +1,8 @@
 package freeforum.controler;
 
+import freeforum.model.Assunto;
+import freeforum.model.AssuntoMng;
+import freeforum.model.IAssuntoMng;
 import freeforum.model.enums.AssuntoEnum;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,15 +20,12 @@ public class AssuntoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<AssuntoEnum> assuntos = new ArrayList<AssuntoEnum>();
-        assuntos.add(AssuntoEnum.JOGOS);
-        assuntos.add(AssuntoEnum.FILMES);
-        assuntos.add(AssuntoEnum.COMIDA);
-        assuntos.add(AssuntoEnum.MUSICA);
-        assuntos.add(AssuntoEnum.SERIES);
+        List<Assunto> assuntos = new ArrayList<Assunto>();
         
-        
+        IAssuntoMng manager = new AssuntoMng();
+        assuntos = manager.obterTodos();
         request.setAttribute("Assuntos", assuntos);
+        
         RequestDispatcher rd;
         rd = request.getRequestDispatcher("/WEB-INF/jsp/assunto.jsp");
         rd.forward(request, response);
