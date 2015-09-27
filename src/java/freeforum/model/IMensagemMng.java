@@ -11,10 +11,9 @@ import java.util.List;
  *
  * @author Alexandre
  */
-public interface ITopicoMng {
+public interface IMensagemMng {
     
-    Topico novoTopico(Topico topico);
-    Topico selecionarPorId(int id, Assunto assunto);
-    List<Topico> selecionarPorAssunto(Assunto assunto);
+    List<Mensagem> selecionarPorTopico(Topico topico, Assunto assunto);
+    Mensagem inserirMensagem(Mensagem mesagem); 
     
 }

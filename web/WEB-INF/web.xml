@@ -8,6 +8,10 @@
         <servlet-name>AssuntoDetalheServlet</servlet-name>
         <servlet-class>freeforum.controler.AssuntoDetalheServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TopicoServlet</servlet-name>
+        <servlet-class>freeforum.controler.TopicoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AssuntoServlet</servlet-name>
         <url-pattern>/assuntos</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>AssuntoDetalheServlet</servlet-name>
         <url-pattern>/assunto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TopicoServlet</servlet-name>
+        <url-pattern>/topico</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

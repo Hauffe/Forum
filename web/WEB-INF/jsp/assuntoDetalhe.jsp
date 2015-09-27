@@ -17,7 +17,9 @@
         <h1><c:out value="${assunto.nome}"/></h1>
         <ul>
             <c:forEach var="topicos" items="${topicos}">
-                <li>${topicos.titulo} - ${topicos.nome}</li>
+                <a href="topico?id_topico=${topicos.id}&id_assunto=${assunto.id}">
+                    <li>${topicos.titulo} - ${topicos.nome}</li>
+                </a>
             </c:forEach> 
         </ul>
         <h2>Cadastrar novo tópico:</h2>
@@ -25,7 +27,7 @@
             <label for="nome">Seu nome é:</label><input type="text" name="nome"/>
             <label for="titulo">Titulo do tópico:</label><input type="text" name="titulo"/>
             <!-- Adicionar pergunta em topico-->
-            <label for="Pergunta">Pergunta:</label><input type="text" name="pergunta"/>
+            <label for="pergunta">Pergunta:</label><textarea name="pergunta" rows="4" cols="50"></textarea>
             <input type="submit" value="enviar"/>
         </form>
     </body>

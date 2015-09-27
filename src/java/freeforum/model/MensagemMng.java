@@ -6,6 +6,7 @@
 package freeforum.model;
 
 import freeforum.dao.IDaoManager;
+import freeforum.dao.IMensagemDAO;
 import freeforum.dao.ITopicoDAO;
 import freeforum.dao.JdbcDaoManager;
 import java.util.ArrayList;
@@ -15,53 +16,38 @@ import java.util.List;
  *
  * @author Alexandre
  */
-public class TopicoMng implements ITopicoMng{
+public class MensagemMng implements IMensagemMng{
 
     IDaoManager maneger = new JdbcDaoManager();
-    ITopicoDAO dao = maneger.getTopicoDao();
+    IMensagemDAO dao = maneger.getMensagemDao();
     
     @Override
-    public Topico novoTopico(Topico topico) {
-        try {
-            maneger.iniciar();
-            Topico t;
-            t = dao.inserir(topico);
-            maneger.confirmarTransacao();
-            maneger.encerrar();
-            return t;
-        } catch (Exception e) {
-            maneger.abortarTransacao();
-            throw e;
-        }
-        
-    }
-
-    @Override
-    public List<Topico> selecionarPorAssunto(Assunto assunto) {
-        List<Topico> topicos = new ArrayList<Topico>();
+    public List<Mensagem> selecionarPorTopico(Topico topico, Assunto assunto) {
+        List<Mensagem> mensagens = new ArrayList<Mensagem>();
         
         try {
             maneger.iniciar();
-            topicos = dao.selecionarPorAssunto(assunto);
+            mensagens = dao.selecionarPorTopico(topico, assunto);
             maneger.confirmarTransacao();
             maneger.encerrar();
-            return topicos;
-        } catch (Exception e) {
+            return mensagens;
+        } catch (Exception e){
             maneger.abortarTransacao();
             throw e;
         }
     }
 
     @Override
-    public Topico selecionarPorId(int id, Assunto assunto) {
-        Topico topico = null;
+    public Mensagem inserirMensagem(Mensagem mesagem) {
+        Mensagem mensagem = null;
         try {
             maneger.iniciar();
-            topico = dao.selecionarPorId(id, assunto);
+            mensagem = dao.inserirMensagem(mesagem);
             maneger.confirmarTransacao();
             maneger.encerrar();
-            return topico;
+            return mensagem;
         } catch (Exception e) {
+            maneger.abortarTransacao();
             throw e;
         }
     }

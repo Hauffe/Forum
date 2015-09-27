@@ -71,6 +71,7 @@ public class AssuntoDetalheServlet extends HttpServlet {
         topico.setMensagens(null);
         topico.setTitulo(request.getParameter("titulo"));
         topico.setNome(request.getParameter("nome"));
+        topico.setPergunta(request.getParameter("pergunta"));
         maneger.novoTopico(topico);
         
         

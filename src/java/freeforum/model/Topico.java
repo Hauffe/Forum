@@ -17,7 +17,7 @@ import java.util.List;
 public class Topico {
     
     private int id;
-    private String titulo, nome;
+    private String titulo, nome, pergunta;
     private Date data;
     private Assunto assunto;
     private List<Mensagem> mensagens;    
@@ -32,6 +32,14 @@ public class Topico {
         this.mensagens = mensagens;
     }
 
+    public String getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
+    }
+    
     public int getId() {
         return id;
     }

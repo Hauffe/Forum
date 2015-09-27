@@ -8,4 +8,5 @@ public interface IDaoManager
     void abortarTransacao();
     IAssuntoDAO getAssuntoDao();
     ITopicoDAO getTopicoDao();
+    IMensagemDAO getMensagemDao();
 }

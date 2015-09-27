@@ -36,16 +36,17 @@ public class jdbcTopicoDAO implements ITopicoDAO{
     @Override
     public Topico inserir(Topico topico) {
         String sql = "INSERT INTO topico "
-                + "(titulo, nome, data, assunto_id) "
+                + "(titulo, nome, data, pergunta, assunto_id) "
                 + "VALUES "
-                + "(?, ?, ?, ?)";
+                + "(?, ?, ?, ?, ?)";
         PreparedStatement ps;
         try {
             ps = conexao.prepareStatement(sql);
             ps.setString(1, topico.getTitulo());
             ps.setString(2, topico.getNome());
             ps.setDate(3, new java.sql.Date(topico.getData().getTime()));
-            ps.setInt(4, topico.getAssunto().getId());
+            ps.setString(4, topico.getPergunta());
+            ps.setInt(5, topico.getAssunto().getId());
             
             ps.executeUpdate();
             return topico;
@@ -77,6 +78,28 @@ public class jdbcTopicoDAO implements ITopicoDAO{
             throw new DaoException(sql + "" + e.getMessage());
         }
     }
+    
+    @Override
+    public Topico selecionarPorId(int id, Assunto assunto) {
+        String sql = "SELECT * FROM topico "
+                + "WHERE "
+                + "id = ?";
+        PreparedStatement ps;
+        ResultSet rs;
+        Topico topico = null;
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                topico = populateObject(rs, assunto);
+            }
+        } catch (Exception e) {
+            throw new DaoException(sql + "" + e.getMessage());
+        }
+        return topico;
+        
+    }
 
     public Topico populateObject(ResultSet rs, Assunto assunto) throws SQLException{
        Topico topico = new Topico(assunto);
@@ -84,8 +107,10 @@ public class jdbcTopicoDAO implements ITopicoDAO{
        topico.setTitulo(rs.getString("titulo"));
        topico.setNome(rs.getString("nome"));
        topico.setData(rs.getDate("data"));
+       topico.setPergunta(rs.getString("pergunta"));
        topico.setMensagens(null);
        return topico;
     }
+
     
 }

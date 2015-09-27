@@ -6,6 +6,7 @@
 package freeforum.dao;
 
 import freeforum.model.Assunto;
+import freeforum.model.Mensagem;
 import freeforum.model.Topico;
 import java.util.List;
 
@@ -13,10 +14,9 @@ import java.util.List;
  *
  * @author Alexandre
  */
-public interface ITopicoDAO {
+public interface IMensagemDAO {
     
-    public Topico inserir(Topico topico);
-    public List<Topico> selecionarPorAssunto(Assunto assunto);
-    public Topico selecionarPorId(int id, Assunto assunto);
+    public List<Mensagem> selecionarPorTopico(Topico topico, Assunto assunto);
+    public Mensagem inserirMensagem(Mensagem mensagem);
     
 }

@@ -11,11 +11,13 @@ public class JdbcDaoManager implements IDaoManager
     Connection conexao;
     jdbcAssuntoDAO assuntoDao;
     jdbcTopicoDAO topicoDao;
+    jdbcMensagemDAO mensagemDao;
     
     public JdbcDaoManager()
     {
         assuntoDao = new jdbcAssuntoDAO(conexao);
         topicoDao = new jdbcTopicoDAO(conexao);
+        mensagemDao = new jdbcMensagemDAO(conexao);
     }
     
     
@@ -27,10 +29,11 @@ public class JdbcDaoManager implements IDaoManager
             Class.forName("com.mysql.jdbc.Driver");
             String url;
             url = "jdbc:mysql://localhost:3306/forum";
-            conexao = DriverManager.getConnection(url, "root", "root");
+            conexao = DriverManager.getConnection(url, "root", "");
             conexao.setAutoCommit(false);
             assuntoDao.setConexao(conexao);
             topicoDao.setConexao(conexao);
+            mensagemDao.setConexao(conexao);
         }
         catch( Exception ex )
         {
@@ -74,6 +77,11 @@ public class JdbcDaoManager implements IDaoManager
     @Override
     public ITopicoDAO getTopicoDao() {
        return topicoDao;
+    }
+    
+    @Override
+    public IMensagemDAO getMensagemDao() {
+       return mensagemDao;
     }
 
 
