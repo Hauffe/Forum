@@ -88,6 +88,8 @@ public class TopicoServlet extends HttpServlet {
             mensagem.setAssunto(assunto);
             maneger.inserirMensagem(mensagem);
             
+            response.sendRedirect("topico?id_topico="+id_topico+"&id_assunto="+id_assunto);  
+            
 
     }
     

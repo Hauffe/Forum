@@ -74,6 +74,8 @@ public class AssuntoDetalheServlet extends HttpServlet {
         topico.setPergunta(request.getParameter("pergunta"));
         maneger.novoTopico(topico);
         
+        response.sendRedirect("assunto?id="+id);
+        
         
     }
     
