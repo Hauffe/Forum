@@ -14,6 +14,7 @@ import java.util.List;
 public interface IMensagemMng {
     
     List<Mensagem> selecionarPorTopico(Topico topico, Assunto assunto);
+    List<Mensagem> selecionarPorAssunto(Topico topico, Assunto assunto);
     Mensagem inserirMensagem(Mensagem mesagem); 
     
 }

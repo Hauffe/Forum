@@ -51,5 +51,20 @@ public class MensagemMng implements IMensagemMng{
             throw e;
         }
     }
+
+    @Override
+    public List<Mensagem> selecionarPorAssunto(Topico topico, Assunto assunto) {
+        List<Mensagem> mensagens = new ArrayList<Mensagem>();
+        try {
+            maneger.iniciar();
+            mensagens = dao.selecionarPorAssunto(topico, assunto);
+            maneger.confirmarTransacao();
+            maneger.encerrar();
+            return mensagens;
+        } catch (Exception e) {
+            maneger.abortarTransacao();
+            throw e;
+        }
+    }
     
 }

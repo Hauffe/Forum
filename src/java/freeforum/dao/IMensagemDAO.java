@@ -17,6 +17,7 @@ import java.util.List;
 public interface IMensagemDAO {
     
     public List<Mensagem> selecionarPorTopico(Topico topico, Assunto assunto);
+    public List<Mensagem> selecionarPorAssunto(Topico topico, Assunto assunto);
     public Mensagem inserirMensagem(Mensagem mensagem);
     
 }

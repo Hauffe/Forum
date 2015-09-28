@@ -6,6 +6,8 @@
 package freeforum.dao;
 
 import freeforum.model.Assunto;
+import freeforum.model.Mensagem;
+import freeforum.model.Topico;
 import java.util.List;
 
 /**

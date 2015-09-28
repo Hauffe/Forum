@@ -30,6 +30,9 @@ public class Topico {
     public Topico(Assunto assunto, List<Mensagem> mensagens) {
         this.assunto = assunto;
         this.mensagens = mensagens;
+        for(Mensagem mensagem : mensagens){
+            mensagem.setTopico(this);
+        }
     }
 
     public String getPergunta() {

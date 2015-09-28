@@ -41,7 +41,8 @@ public class jdbcMensagemDAO implements IMensagemDAO{
         List<Mensagem> mensagens = new ArrayList<Mensagem>();
         String sql = "SELECT * FROM mensagem "
                 + "WHERE "
-                + "topico_id = ?";
+                + "topico_id = ? "
+                + "ORDER BY data DESC";
         PreparedStatement ps;
         ResultSet rs;
         try {
@@ -79,6 +80,29 @@ public class jdbcMensagemDAO implements IMensagemDAO{
         
     }
         
+    @Override
+    public List<Mensagem> selecionarPorAssunto(Topico topico, Assunto assunto) {
+        List<Mensagem> mensagens = new ArrayList<Mensagem>();
+        String sql = "SELECT * FROM mensagem "
+                + "WHERE "
+                + "topico_assunto_id = ? "
+                + "ORDER BY data DESC";
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setInt(1, assunto.getId());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                mensagens.add(populateObject(rs, topico, assunto));
+            }
+            return mensagens;
+        } catch (Exception e) {
+            throw new DaoException(e.getMessage());
+        }  
+    }
+    
+    
         public Mensagem populateObject(ResultSet rs, Topico topico, Assunto assunto) throws SQLException{
             Mensagem mensagem = new Mensagem(topico, assunto);
             mensagem.setId(rs.getInt("id"));
@@ -87,6 +111,7 @@ public class jdbcMensagemDAO implements IMensagemDAO{
             mensagem.setConteudo(rs.getString("conteudo"));
             return mensagem;
         }
+
 
         
     }

@@ -6,6 +6,7 @@
 package freeforum.dao;
 
 import freeforum.model.Assunto;
+import freeforum.model.Mensagem;
 import freeforum.model.Topico;
 import java.sql.Array;
 import java.sql.Connection;
@@ -100,7 +101,8 @@ public class jdbcTopicoDAO implements ITopicoDAO{
         return topico;
         
     }
-
+    
+    
     public Topico populateObject(ResultSet rs, Assunto assunto) throws SQLException{
        Topico topico = new Topico(assunto);
        topico.setId(rs.getInt("id"));
@@ -111,6 +113,7 @@ public class jdbcTopicoDAO implements ITopicoDAO{
        topico.setMensagens(null);
        return topico;
     }
+
 
     
 }

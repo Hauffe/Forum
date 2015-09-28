@@ -14,7 +14,10 @@ import java.util.List;
 public interface IAssuntoMng {
     
     List<Assunto> obterTodos();
-    
+    List<Topico> obterTopicos(Assunto assunto);
+    List<Mensagem> obterMensagens(Topico topico, Assunto assunto);
     Assunto obterPorId(int id);
+    
+    
     
 }

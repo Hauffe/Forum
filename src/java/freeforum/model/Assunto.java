@@ -5,6 +5,7 @@
  */
 package freeforum.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +17,12 @@ public class Assunto {
     private int id;
     private String nome;
     private List<Topico> topicos;
+    private List<Mensagem> mensagens;
 
     public Assunto(String nome) {
         this.nome = nome;
+        topicos = new ArrayList<Topico>();
+        mensagens = new ArrayList<Mensagem>();
     }
 
     public int getId() {
@@ -44,4 +48,14 @@ public class Assunto {
     public void setTopicos(List<Topico> topicos) {
         this.topicos = topicos;
     }
+
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public void setMensagens(List<Mensagem> mensagens) {
+        this.mensagens = mensagens;
+    }
+    
+    
 }

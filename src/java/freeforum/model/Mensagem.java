@@ -23,6 +23,10 @@ public class Mensagem {
         this.topico = topico;
         this.assunto = assunto;
     }
+    
+    public Mensagem(Assunto assunto) {
+        this.assunto = assunto;
+    }
 
     public int getId() {
         return id;
