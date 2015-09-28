@@ -16,5 +16,6 @@ public interface ITopicoMng {
     Topico novoTopico(Topico topico);
     Topico selecionarPorId(int id, Assunto assunto);
     List<Topico> selecionarPorAssunto(Assunto assunto);
+    public List<Mensagem> obterMensagens(Topico topico, Assunto assunto);
     
 }

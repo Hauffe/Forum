@@ -6,6 +6,7 @@
 package freeforum.model;
 
 import freeforum.dao.IDaoManager;
+import freeforum.dao.IMensagemDAO;
 import freeforum.dao.ITopicoDAO;
 import freeforum.dao.JdbcDaoManager;
 import java.util.ArrayList;
@@ -43,6 +44,9 @@ public class TopicoMng implements ITopicoMng{
         try {
             maneger.iniciar();
             topicos = dao.selecionarPorAssunto(assunto);
+            for(Topico topico : topicos){
+                topico.setMensagens(obterMensagens(topico, assunto));
+            }
             maneger.confirmarTransacao();
             maneger.encerrar();
             return topicos;
@@ -65,5 +69,21 @@ public class TopicoMng implements ITopicoMng{
             throw e;
         }
     }
+    
+    
+    @Override
+    public List<Mensagem> obterMensagens(Topico topico, Assunto assunto) {
+               List<Mensagem> mensagens;
+        try {
+            IMensagemDAO dao = maneger.getMensagemDao();
+            mensagens = dao.selecionarPorAssunto(topico, assunto);
+            maneger.confirmarTransacao();
+            return mensagens;
+        } catch (Exception e) {
+            maneger.abortarTransacao();
+            throw e;
+        }
+    }
+    
     
 }

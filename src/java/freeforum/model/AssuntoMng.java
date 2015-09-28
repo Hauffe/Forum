@@ -33,8 +33,9 @@ public class AssuntoMng implements IAssuntoMng{
                 assunto.setTopicos(obterTopicos(assunto));
             }
             for(Assunto assunto : assuntos){
-                for(Topico topico : assunto.getTopicos())
-                assunto.setMensagens(obterMensagens(topico, assunto));
+                for(Topico topico : assunto.getTopicos()){
+                    assunto.setMensagens(obterMensagens(topico, assunto));
+                }
             }
             maneger.confirmarTransacao();
             maneger.encerrar();

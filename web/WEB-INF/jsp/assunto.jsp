@@ -17,10 +17,10 @@
     <body>
         <h1>Assuntos</h1>
             <c:forEach var="assunto" items="${Assuntos}">   
-                <div class="assunto">
                     <c:set var="quantidadeTop">0</c:set>
                     <c:set var="quantidadeMsg">0</c:set>
-                    <c:set var="ultimaMensagem"></c:set>
+                    <c:set var="ultimaMensagem"> </c:set>
+                <div class="assunto">
                     <c:forEach var="a" items="${assunto.topicos}">
                         <c:set var="quantidadeTop">${quantidadeTop=quantidadeTop+1}</c:set>
                     </c:forEach>

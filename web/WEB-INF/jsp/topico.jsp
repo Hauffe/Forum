@@ -12,23 +12,43 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title><c:out value="${topico.titulo}"/></title>
+        <title>${topico.titulo}</title>
         <link href="style/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1><c:out value="${topico.titulo} - ${topico.pergunta}"/></h1>
-        <div>
-            <c:forEach var="mensagens" items="${mensagens}">
-                <div>
-                    <p>${mensagens.nome} - ${mensagens.conteudo}</p>                
+        <a class="voltar" href="assunto?id=<c:out value="${assunto.id}"/>">Voltar</a>
+        <h1>${topico.titulo}</h1>
+        <div class="mensagens">
+            <div class="perguntadono">
+                <div class="dono">
+                    Por: ${topico.nome}<br/>
+                    Em: ${topico.data}
                 </div>
-            </c:forEach>
+            <h2>${topico.pergunta}</h2>
+            </div>
+                <c:forEach var="mensagem" items="${mensagens}">
+                    <div class="resposta">
+                        <div class="respostadono">
+                            Por: ${mensagem.nome}<br/>
+                            Em: ${mensagem.data}
+                        </div> 
+                        <p class="triangle-isosceles left">
+                            ${mensagem.conteudo}
+                        </p>
+                    </div>
+                </c:forEach>
         </div>
-         <h2>Responder o tópico:</h2>
-        <form method="POST" action="topico?id_topico=<c:out value="${topico.id}"/>&id_assunto=<c:out value="${assunto.id}"/>">     
-            <label for="nome">Seu nome é:</label><input type="text" name="nome"/>
-            <label for="conteudo">Resposta:</label><textarea name="conteudo" rows="4" cols="50"></textarea>
-            <input type="submit" value="enviar"/>
+        <div class="cadastro">
+        <h2>Responder o tópico:</h2>
+        <form method="POST" action="topico?id_topico=<c:out value="${topico.id}"/>&id_assunto=<c:out value="${assunto.id}"/>">
+            <div class="nometitulo">
+                <label for="nome">Seu nome é:</label><input type="text" name="nome"/>
+            </div>
+            <div class="pergunta">
+                <label for="conteudo">Resposta:</label><textarea name="conteudo" rows="4" cols="50"></textarea>
+                <input type="submit" value="enviar"/>
+            </div>
         </form>
+        </div>
     </body>
 </html>
