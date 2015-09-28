@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title><c:out value="${topico.titulo}"/></title>
+        <link href="style/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <h1><c:out value="${topico.titulo} - ${topico.pergunta}"/></h1>

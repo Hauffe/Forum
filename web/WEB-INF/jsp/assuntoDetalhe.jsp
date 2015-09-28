@@ -12,16 +12,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title><c:out value="${assunto.nome}"/></title>
+        <link href="style/estilo.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <h1><c:out value="${assunto.nome}"/></h1>
-        <ul>
-            <c:forEach var="topicos" items="${topicos}">
-                <a href="topico?id_topico=${topicos.id}&id_assunto=${assunto.id}">
-                    <li>${topicos.titulo} - ${topicos.nome}</li>
+        <div class="topico">
+            <c:forEach var="topico" items="${topicos}">
+                <a href="topico?id_topico=${topico.id}&id_assunto=${assunto.id}">
+                    <li>${topico.titulo} - ${topico.nome}</li>
                 </a>
             </c:forEach> 
-        </ul>
+        </div>
         <h2>Cadastrar novo tópico:</h2>
         <form method="POST" action="assunto?id=<c:out value="${assunto.id}"/>">     
             <label for="nome">Seu nome é:</label><input type="text" name="nome"/>

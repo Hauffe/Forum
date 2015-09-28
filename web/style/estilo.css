@@ -1,0 +1,126 @@
+/* 
+    Created on : Sep 4, 2015, 3:41:14 PM
+    Author     : Alexandre
+*/
+
+*{
+    position: relative;
+    font-family: 'Trebuchet MS';
+}
+body {
+    background-color: #DCDCDC;
+}
+
+h1{
+    margin: 34px 0px 30px 10px;
+    font-size: 60px;
+    padding: 5px 6px 5px 70px;
+    color: #57A29F;
+    border: 1px solid;
+    -webkit-animation-name: titulo;/* Chrome, Safari, Opera */
+    -webkit-animation-duration: 5s;/* Chrome, Safari, Opera */
+    animation-name: titulo;
+    animation-duration: 5s;
+}
+.assunto h2{
+    margin: 0px;
+    font-size: 40px;
+}
+
+.assunto a{
+    text-decoration: none;
+    color: #CE8B25;
+    transition: 0.3s ease-in-out;
+}
+
+.assunto b{
+    font-size: 14px;
+}
+
+.assunto p{
+    font-size: 13px;
+}
+
+.assunto{
+    position: relative;
+    margin: 0 auto;
+    width: 290px;
+    padding: 15px;
+    transition: 0.3s all ease-in-out;
+    border-radius: 10px;
+    border: 1px #B7B7B7 solid;
+    margin-bottom: 5px;
+}
+.cadastro {
+    position: relative;
+    margin: 0 auto;
+    width: 290px;
+    padding: 15px;
+    transition: 0.3s all ease-in-out;
+    border-radius: 10px;
+    border: 1px #B7B7B7 solid;
+}
+
+label {
+    text-transform: uppercase;
+    display: inline-block;
+    width: 131px;
+    text-align: right;
+    margin: 10px 3px 10px 5px;
+    cursor: pointer;
+    letter-spacing: 3px;
+}
+
+input[type=text], input[type=password], input[type=date], select{
+    width: 140px;
+    background-color: #E2E2E2;
+    border: 1px #B7B7B7 solid;
+    border-radius: 5px
+}
+textArea{
+    width: 280px;
+    background-color: #E2E2E2;
+    border: 1px #B7B7B7 solid;
+    border-radius: 5px
+}
+
+input[type=submit] {
+    margin: 0 auto;
+    display: inherit;
+    background-color: #E2E2E2;
+    border: 1px #B7B7B7 solid;
+    border-radius: 6px;
+    padding: 5px;
+    width: 188px;
+    top: 5px;
+    cursor:pointer;
+    transition: 0.3s all ease-in-out;
+}
+/*----------------------- Animations --------------------------*/
+
+.cadastro, .assunto:hover{
+    box-shadow: 2px 2px 10px rgba(10, 51, 103, 0.67);
+}
+
+a:hover{
+    color: #57A29F;
+}
+
+input[type=submit]:hover {
+    border: 1px #24C34F solid;
+    background-color: #24C34F;
+    color: #E2E2E2;
+}
+
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes titulo {
+    0%   {opacity:0.0; padding: 5px 6px 5px 30px;}
+    100% {opacity:1; padding: 5px 6px 5px 70px;}
+}
+
+/* Standard syntax */
+@keyframes titulo {
+    0%   {opacity:0.0; padding: 5px 6px 5px 300px;}
+    100% {opacity:1; padding: 5px 6px 5px 70px;}
+}
